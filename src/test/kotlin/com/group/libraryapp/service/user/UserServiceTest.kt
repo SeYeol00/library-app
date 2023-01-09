@@ -56,7 +56,7 @@ class UserServiceTest
         ))
 
         // when
-        val results = userService.users
+        val results = userService.getUsers()
 
         // then
         assertThat(results).hasSize(3)// [UserResponse(), UserResponse()]
@@ -72,7 +72,9 @@ class UserServiceTest
     fun updateUserNameTest(){
         //given
         val savedUser: User = userRepository.save(User("A",10))
-        val request: UserUpdateRequest = UserUpdateRequest(savedUser.id,"B")
+        //  User에서 id는 null이 될 수 있는데 UserUpdateRequest의 id는 null이 될 수 없다.
+        // 해결 방법은 null 단언 선언이다. -> !!
+        val request: UserUpdateRequest = UserUpdateRequest(savedUser.id!!,"B")
 
         // when
         userService.updateUserName(request)

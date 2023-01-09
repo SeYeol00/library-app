@@ -1,6 +1,6 @@
 package com.group.libraryapp.service.book
 
-import com.group.libraryapp.domain.book.javaBook
+import com.group.libraryapp.domain.book.Book
 import com.group.libraryapp.domain.book.BookRepository
 import com.group.libraryapp.domain.user.User
 import com.group.libraryapp.domain.user.UserRepository
@@ -33,7 +33,9 @@ class BookServiceTest
 
     @AfterEach
     fun clean(){
+        // 코든 레포지토리는 초기화 해주자
         bookRepository.deleteAll()
+        userRepository.deleteAll()
     }
 
     companion object {
@@ -65,7 +67,7 @@ class BookServiceTest
     @DisplayName(" 책 대출이 정상 동작한다.")
     fun loanBookTest(){
         // given
-        bookRepository.save(javaBook("이상한 나라의 엘리스"))
+        bookRepository.save(Book("이상한 나라의 엘리스"))
         val savedUser = userRepository.save(User("박세열", 20))
         val request: BookLoanRequest = BookLoanRequest("박세열","이상한 나라의 엘리스")
 
@@ -85,7 +87,7 @@ class BookServiceTest
     @DisplayName(" 책이 진작 대출되어 있다면, 신규 대출이 실패한다.")
     fun loanBookFailTest(){
         // given
-        bookRepository.save(javaBook("이상한 나라의 엘리스"))
+        bookRepository.save(Book("이상한 나라의 엘리스"))
         val savedUser = userRepository.save(User("박세열", 20))
         userLoanHistoryRepository.save(UserLoanHistory(savedUser,"이상한 나라의 엘리스",false))
         val request: BookLoanRequest = BookLoanRequest("박세열","이상한 나라의 엘리스")
@@ -101,7 +103,7 @@ class BookServiceTest
     @DisplayName("책 반납이 정상 동작한다.")
     fun returnBookTest(){
         // given
-        bookRepository.save(javaBook("이상한 나라의 엘리스"))
+        bookRepository.save(Book("이상한 나라의 엘리스"))
         val savedUser = userRepository.save(User("박세열", 20))
         userLoanHistoryRepository.save(UserLoanHistory(savedUser,"이상한 나라의 엘리스",false))
         val request: BookReturnRequest = BookReturnRequest("박세열","이상한 나라의 엘리스")

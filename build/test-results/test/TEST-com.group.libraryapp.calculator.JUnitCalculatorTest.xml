@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.group.libraryapp.calculator.JUnitCalculatorTest" tests="5" skipped="0" failures="1" errors="0" timestamp="2023-01-07T08:47:58" hostname="seyeolui-MacBookPro.local" time="0.029">
+<testsuite name="com.group.libraryapp.calculator.JUnitCalculatorTest" tests="5" skipped="0" failures="1" errors="0" timestamp="2023-01-09T08:46:58" hostname="seyeolui-MacBookPro.local" time="0.036">
   <properties/>
-  <testcase name="divideTest()" classname="com.group.libraryapp.calculator.JUnitCalculatorTest" time="0.024">
+  <testcase name="divideTest()" classname="com.group.libraryapp.calculator.JUnitCalculatorTest" time="0.031">
     <failure message="org.opentest4j.AssertionFailedError: &#10;expected: 1&#10; but was: 2" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: 
 expected: 1
  but was: 2
@@ -96,7 +96,7 @@ expected: 1
 </failure>
   </testcase>
   <testcase name="addTest()" classname="com.group.libraryapp.calculator.JUnitCalculatorTest" time="0.0"/>
-  <testcase name="multiplyTest()" classname="com.group.libraryapp.calculator.JUnitCalculatorTest" time="0.001"/>
+  <testcase name="multiplyTest()" classname="com.group.libraryapp.calculator.JUnitCalculatorTest" time="0.0"/>
   <testcase name="divideExceptionTest()" classname="com.group.libraryapp.calculator.JUnitCalculatorTest" time="0.002"/>
   <testcase name="minusTest()" classname="com.group.libraryapp.calculator.JUnitCalculatorTest" time="0.0"/>
   <system-out><![CDATA[]]></system-out>

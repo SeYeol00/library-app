@@ -1,6 +1,6 @@
 package com.group.libraryapp.service.book;
 
-import com.group.libraryapp.domain.book.javaBook;
+import com.group.libraryapp.domain.book.Book;
 import com.group.libraryapp.domain.book.BookRepository;
 import com.group.libraryapp.domain.user.User;
 import com.group.libraryapp.domain.user.UserRepository;
@@ -30,13 +30,14 @@ public class BookService {
 
   @Transactional
   public void saveBook(BookRequest request) {
-    javaBook newBook = new javaBook(request.getName());
+    // 자바 -> 코틀린 이렇게 호출할 때 default 파라미터를 인식하지 못한다.
+    Book newBook = new Book(request.getName(),null);
     bookRepository.save(newBook);
   }
 
   @Transactional
   public void loanBook(BookLoanRequest request) {
-    javaBook book = bookRepository.findByName(request.getBookName()).orElseThrow(IllegalArgumentException::new);
+    Book book = bookRepository.findByName(request.getBookName()).orElseThrow(IllegalArgumentException::new);
     if (userLoanHistoryRepository.findByBookNameAndIsReturn(request.getBookName(), false) != null) {
       throw new IllegalArgumentException("진작 대출되어 있는 책입니다");
     }

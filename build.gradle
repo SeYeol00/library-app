@@ -6,6 +6,10 @@ plugins {
     // 코틀린을 쓰기 위해서는 플러그인이 필요하다. 쿼리DSL과 같은 느낌
     // 코틀린 전용 jvm을 가져오기
     id 'org.jetbrains.kotlin.jvm' version '1.6.21'
+    // 코틀린에 jpa를 적용시키는 플러그인, 핵심이다.
+    id 'org.jetbrains.kotlin.plugin.jpa' version '1.6.21'
+    // 코틀린에서 spring 프레임워크를 완전히 사용하기 위한 플러그인
+    id 'org.jetbrains.kotlin.plugin.spring' version '1.6.21'
 }
 
 group = 'com.group'
@@ -34,6 +38,8 @@ dependencies {
     testAnnotationProcessor 'org.projectlombok:lombok'
     // 라이브러리 가져오기
     implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8'
+    // 코틀린 리플렉션 사용
+    implementation 'org.jetbrains.kotlin:kotlin-reflect:1.6.21'
 }
 
 tasks.named('test') {
