@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.group.libraryapp.JUnitTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2023-01-10T08:28:26" hostname="seyeolui-MacBookPro.local" time="0.001">
+<testsuite name="com.group.libraryapp.JUnitTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2023-01-10T12:19:30" hostname="seyeolui-MacBookPro.local" time="0.001">
   <properties/>
   <testcase name="test1()" classname="com.group.libraryapp.JUnitTest" time="0.001"/>
   <testcase name="test2()" classname="com.group.libraryapp.JUnitTest" time="0.0"/>

@@ -2,11 +2,13 @@ package com.group.libraryapp.service.user
 
 import com.group.libraryapp.domain.user.User
 import com.group.libraryapp.domain.user.UserRepository
+import com.group.libraryapp.domain.user.loanhistory.UserLoanStatus
 import com.group.libraryapp.dto.user.request.UserCreateRequest
 import com.group.libraryapp.dto.user.request.UserUpdateRequest
+import com.group.libraryapp.dto.user.response.BookHistoryResponse
+import com.group.libraryapp.dto.user.response.UserLoanHistoryResponse
 import com.group.libraryapp.dto.user.response.UserResponse
 import com.group.libraryapp.util.findByIdOrThrow
-import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import kotlin.IllegalArgumentException
@@ -50,6 +52,23 @@ class UserService constructor(
             ?: throw IllegalArgumentException()
 //            .orElseThrow(::IllegalArgumentException)
         userRepository.delete(user)
+    }
+
+    @Transactional(readOnly = true)
+    fun getUserLoanHistories(): List<UserLoanHistoryResponse> {
+        return userRepository.findAll()// 람다로 써서 풀거임
+            .map { user ->// user를 가져와서 쓸거임
+                 UserLoanHistoryResponse(
+                     name = user.name, // 한 번 더 매핑
+                     books = user.userLoanHistories.map { userLoanHistory ->
+                         // 생성자를 이용해서 한 번 더 매핑
+                         BookHistoryResponse(
+                             name = userLoanHistory.bookName,
+                             isReturn =
+                            // 여기서 조건식을 statement로 받는 코틀린의 장점을 쓰자
+                            userLoanHistory.status == UserLoanStatus.RETURNED
+                         )
+                     })}
     }
 
 
