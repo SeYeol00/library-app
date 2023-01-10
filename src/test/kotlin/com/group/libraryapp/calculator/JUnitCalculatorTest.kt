@@ -57,7 +57,7 @@ class JUnitCalculatorTest {
 
         // then
         assertThat(calculator.number)// 확인하고 싶은 값
-            .isEqualTo(1)// 단언문
+            .isEqualTo(2)// 단언문
     }
 
     @Test

@@ -5,9 +5,11 @@ import com.group.libraryapp.domain.user.UserRepository
 import com.group.libraryapp.dto.user.request.UserCreateRequest
 import com.group.libraryapp.dto.user.request.UserUpdateRequest
 import com.group.libraryapp.dto.user.response.UserResponse
+import com.group.libraryapp.util.findByIdOrThrow
+import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
-import java.lang.IllegalArgumentException
+import kotlin.IllegalArgumentException
 
 @Service
 class UserService constructor(
@@ -26,19 +28,27 @@ class UserService constructor(
         return userRepository.findAll()
             // stream과 같은 기능
             .map { // findAll로 가져온 객체들을 람다 함수에 넣겠다, map은 iter와 같은 역할이다.
-            user -> UserResponse(user)
+            user -> UserResponse.of(user)
         }
     }
 
     @Transactional
-    fun updateUserName(request: UserUpdateRequest){ // 코틀린에서는 생성자를 부를 때 ::을 쓴다.
-        val user = userRepository.findById(request.id).orElseThrow(::IllegalArgumentException)
+    fun updateUserName(request: UserUpdateRequest){
+        // 코틀린에서는 생성자를 부를 때 ::을 쓴다.
+        // 옵셔널 대신 ?를 쓰면 ?: 엘비스 연산자를 쓰자
+
+//        val user = userRepository.findById(request.id)
+//            .orElseThrow(::IllegalArgumentException)
+        val user = userRepository.findByIdOrThrow(request.id)
+            //                  springDataJpa에서 코틀린용으로 만든 메서드
         user.updateName(request.name)
     }
 
     @Transactional
     fun deleteUser(name: String){
-        val user = userRepository.findByName(name).orElseThrow(::IllegalArgumentException)
+        val user = userRepository.findByName(name)
+            ?: throw IllegalArgumentException()
+//            .orElseThrow(::IllegalArgumentException)
         userRepository.delete(user)
     }
 

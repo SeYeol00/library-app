@@ -10,6 +10,7 @@ plugins {
     id 'org.jetbrains.kotlin.plugin.jpa' version '1.6.21'
     // 코틀린에서 spring 프레임워크를 완전히 사용하기 위한 플러그인
     id 'org.jetbrains.kotlin.plugin.spring' version '1.6.21'
+
 }
 
 group = 'com.group'
@@ -40,6 +41,10 @@ dependencies {
     implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8'
     // 코틀린 리플렉션 사용
     implementation 'org.jetbrains.kotlin:kotlin-reflect:1.6.21'
+    // 코틀린으로 된 코드에서 json 객체를 이해 못하는 경우 대비 의존성
+    // 잭슨 라이브러리 => 스프링에서 json을 사용하는 의존성
+    // jackson-module-kotlin => 코틀린용 잭슨
+    implementation 'com.fasterxml.jackson.module:jackson-module-kotlin:2.13.3'
 }
 
 tasks.named('test') {
