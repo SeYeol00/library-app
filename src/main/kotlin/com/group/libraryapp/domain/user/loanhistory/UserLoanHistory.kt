@@ -24,6 +24,13 @@ class UserLoanHistory constructor(
     val id: Long? = null,
 
     ) {
+
+    // 커스텀 게터를 써서 리펙터링 하기
+    val isReturn: Boolean
+        get() = this.status == UserLoanStatus.RETURNED
+
+
+
     fun doReturn(){
         this.status = UserLoanStatus.RETURNED
     }

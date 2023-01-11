@@ -6,10 +6,15 @@ plugins {
     // 코틀린을 쓰기 위해서는 플러그인이 필요하다. 쿼리DSL과 같은 느낌
     // 코틀린 전용 jvm을 가져오기
     id 'org.jetbrains.kotlin.jvm' version '1.6.21'
+
     // 코틀린에 jpa를 적용시키는 플러그인, 핵심이다.
     id 'org.jetbrains.kotlin.plugin.jpa' version '1.6.21'
+
     // 코틀린에서 spring 프레임워크를 완전히 사용하기 위한 플러그인
     id 'org.jetbrains.kotlin.plugin.spring' version '1.6.21'
+
+    // 최신 gradle 버전 기준 QueryDSL 설정
+    id 'org.jetbrains.kotlin.kapt' version '1.6.21'
 
 }
 
@@ -37,14 +42,22 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok'
     testCompileOnly 'org.projectlombok:lombok'
     testAnnotationProcessor 'org.projectlombok:lombok'
+
     // 라이브러리 가져오기
     implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8'
+
     // 코틀린 리플렉션 사용
     implementation 'org.jetbrains.kotlin:kotlin-reflect:1.6.21'
+
     // 코틀린으로 된 코드에서 json 객체를 이해 못하는 경우 대비 의존성
     // 잭슨 라이브러리 => 스프링에서 json을 사용하는 의존성
     // jackson-module-kotlin => 코틀린용 잭슨
     implementation 'com.fasterxml.jackson.module:jackson-module-kotlin:2.13.3'
+
+    // 코틀린의 쿼리dsl 디펜던시
+    implementation 'com.querydsl:querydsl-jpa:5.0.0'
+    kapt('com.querydsl:querydsl-apt:5.0.0:jpa')
+    kapt('org.springframework.boot:spring-boot-configuration-processor')
 }
 
 tasks.named('test') {

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.group.libraryapp.calculator.CalculatorTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2023-01-10T12:19:30" hostname="seyeolui-MacBookPro.local" time="0.001">
+<testsuite name="com.group.libraryapp.calculator.CalculatorTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2023-01-11T12:41:59" hostname="seyeolui-MacBookPro.local" time="0.002">
   <properties/>
-  <testcase name="divideTest()" classname="com.group.libraryapp.calculator.CalculatorTest" time="0.0"/>
+  <testcase name="divideTest()" classname="com.group.libraryapp.calculator.CalculatorTest" time="0.001"/>
   <testcase name="addTest()" classname="com.group.libraryapp.calculator.CalculatorTest" time="0.0"/>
   <testcase name="multiplyTest()" classname="com.group.libraryapp.calculator.CalculatorTest" time="0.0"/>
-  <testcase name="divideExceptionTest()" classname="com.group.libraryapp.calculator.CalculatorTest" time="0.0"/>
+  <testcase name="divideExceptionTest()" classname="com.group.libraryapp.calculator.CalculatorTest" time="0.001"/>
   <testcase name="minusTest()" classname="com.group.libraryapp.calculator.CalculatorTest" time="0.0"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>

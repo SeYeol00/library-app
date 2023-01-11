@@ -56,20 +56,16 @@ class UserService constructor(
 
     @Transactional(readOnly = true)
     fun getUserLoanHistories(): List<UserLoanHistoryResponse> {
-        return userRepository.findAll()// 람다로 써서 풀거임
-            .map { user ->// user를 가져와서 쓸거임
-                 UserLoanHistoryResponse(
-                     name = user.name, // 한 번 더 매핑
-                     books = user.userLoanHistories.map { userLoanHistory ->
-                         // 생성자를 이용해서 한 번 더 매핑
-                         BookHistoryResponse(
-                             name = userLoanHistory.bookName,
-                             isReturn =
-                            // 여기서 조건식을 statement로 받는 코틀린의 장점을 쓰자
-                            userLoanHistory.status == UserLoanStatus.RETURNED
-                         )
-                     })}
+        return userRepository.findAllWithHistories()// 람다로 써서 풀거임
+            // 리펙터링의 핵심은 dto를 만드는 역할을 dto에게 넘기는 것이다.
+           .map (
+               UserLoanHistoryResponse::of
+           ) //user ->// user를 가져와서 쓸거임
+//                UserLoanHistoryResponse(
+//                    name = user.name, // 한 번 더 매핑, :: => method reference
+//                    books = user.userLoanHistories.map(BookHistoryResponse::of)
+//                )
+
+
     }
-
-
 }
